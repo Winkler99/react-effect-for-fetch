@@ -10,30 +10,48 @@ function App() {
 
   const [artData, setArtData] = useState([]);
   const [usersData, setUsersData] = useState([]);
-
+  const [adviceData, setAdviceData] = useState(null);
+  const [favouritesData, setFavouritesData] = useState([])
   
+
+const handleNewAdvice = async () => {
+  await fetch(`	https://api.adviceslip.com/advice`)
+  .then((res) => res.json())
+  .then((data) => setAdviceData(data))
+}
+
+const handleSetFavAdvice = event => {
+  setFavouritesData([...favouritesData, {adviceData}])
+}
+console.log(favouritesData);
   
     useEffect(() => {
       fetch(`https://boolean-uk-api-server.fly.dev/art`)
        .then(res => res.json())
-       .then(data => setUsersData(data))
+       .then(data => setArtData(data))
    },[])
 
-   console.log(usersData)
+   console.log(artData)
 
    useEffect(() => {
      fetch(`https://boolean-uk-api-server.fly.dev/Winkler99/contact`)
        .then(res => res.json())
-       .then(data => setArtData(data))
+       .then(data => setUsersData(data))
    },[])
-   console.log(artData)
+   console.log(usersData)
   
+   useEffect(() => {
+    fetch(`	https://api.adviceslip.com/advice`)
+      .then(res => res.json())
+      .then(data => setAdviceData(data))
+  },[])
+  console.log(adviceData)
   
   return (
     <div className="main-layout">
       <ArtsSection artData={artData} />
       <UsersSection usersData ={usersData}/>
-      <AdviceSection />
+      {adviceData && <AdviceSection adviceData ={adviceData} handleNewAdvice = {handleNewAdvice} handleSetFavAdvice = {handleSetFavAdvice} favouritesData = {favouritesData}/>}
     </div>
   )
 }

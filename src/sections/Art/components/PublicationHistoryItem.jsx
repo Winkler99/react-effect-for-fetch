@@ -1,9 +1,9 @@
 export default function PublicationHistoryItem(props) {
-  const publicationHistory = props.publicationHistory
+  const publicationHistoryItem = props.publicationHistoryItem
 
     return (
       <li>
-      {publicationHistory}
+      {publicationHistoryItem}
       </li>
 
     )

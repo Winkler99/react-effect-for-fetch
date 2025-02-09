@@ -1,21 +1,21 @@
 
 export default function ArtListItem(props) {
 
-    const firstName = props.firstName;
-    const lastName = props.lastName;
-    const email = props.email;
-    const profileImage = props.profileImage;
+    const firstName = props.usersListItem.firstName;
+    const lastName = props.usersListItem.lastName;
+    const email = props.usersListItem.email;
+    const profileImage = props.usersListItem.profileImage;
 
 
     return (
         <>
-        <li style={{background: props.favouriteColour}}>
+        <li style={{background: props.usersListItem.favouriteColour}}>
         <img
-          src="https://www.gravatar.com/avatar/ritthy.ryan@example.com?s=120&d=identicon"
-          alt="Ritthy Ryan"
+          src={profileImage}
+          alt={firstName + " " + lastName}
         />
-        <h3>Mr Ritthy Ryan</h3>
-        <p>Email: ritthy.ryan@example.com</p>
+        <h3>Mr {firstName + " " + lastName}</h3>
+        <p>Email: {email}</p>
       </li>
       </>
     )
